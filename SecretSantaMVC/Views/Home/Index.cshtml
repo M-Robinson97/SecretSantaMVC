@@ -1,0 +1,113 @@
+﻿@model List<FullCommentModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="renderbackground">
+
+    <div class="background">
+        <video autoplay muted loop id="snowflakesFalling">
+            <source src="https://static.videezy.com/system/resources/previews/000/004/927/original/Snowflakes_Falling_Motion_Background_4K.mp4" type="video/mp4" />
+        </video>
+    </div>
+    <div id="overlay">
+        <h1 class="title">Welcome to the Secret Santa Generator!</h1>
+        <div class="entryfield">
+            <h2 class="inputinstruction">Add the email addresses of at least three friends below!</h2>
+            <form>
+                <br>
+                <div class="nameemail">
+                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" required>
+                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" required>
+                </div>
+                <div class="nameemail">
+                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" required>
+                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" required>
+                </div>
+                <div class="nameemail">
+                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" required>
+                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" required>
+                </div>
+                <div id="newElementId"></div>
+                <br>
+                <div id="secretsantaformbuttons">
+                    <input class="secretsantaformbutton" type="submit" name="submit" value="Submit">
+                    <input class="secretsantaformbutton" type="button" value="+" onclick="createNewInput();" />
+                    <input class="secretsantaformbutton" type="button" value="-" onclick="deleteInput();" />
+                    <script type="text/JavaScript">
+                        function createNewInput() {
+                            var txtNewInputBox = document.createElement('div');
+                            txtNewInputBox.innerHTML = "<input type='text' class='formextraname' placeholder='Enter a name!' maxlength='30' required><input type='email' class='formextraemail' placeholder='Enter an email address!' maxlength='30' required>";
+                            document.getElementById("newElementId").appendChild(txtNewInputBox);
+                        }
+                    </script>
+                    <script>
+                        function deleteInput() {
+                            var elemName = document.getElementsByClassName('formextraname')[document.getElementsByClassName('formextraname').length - 1];
+                            var elemEmail = document.getElementsByClassName('formextraemail')[document.getElementsByClassName('formextraemail').length - 1];
+                            elemName.parentNode.removeChild(elemName);
+                            elemEmail.parentNode.removeChild(elemEmail);
+                        }
+                    </script>
+                </div>
+                <br>
+            </form>
+        </div>
+        <div class="commentformdiv">
+            <h2 class="commentinstruction">Like what you see? Leave some feedback in the comments below!</h2>
+            <form id="commentform">
+                <div class="commentfielddiv">
+                    <input class="commentfield" type="text" placeholder="Give your review a title!" maxlength="30" required name="title">
+                </div>
+                <div class="commentfielddiv">
+                    <input class="commentfield" type="text" placeholder="What's your name?" maxlength="30" required name="author">
+                </div>
+                <div class="commentfielddiv">
+                    <textarea class="commentfield" type="text" placeholder="Write your review here!" required name="text"></textarea>
+                </div>
+                <div>
+                    <input class="commentsformbutton" type="submit" name="submit-review" value="Click to submit your review!">
+                </div>
+            </form>
+            <div id="renderReviewsId">
+                @foreach (var fullCommentModel in Model)
+                {
+                    <div class="commentobject">
+                        <h3 class="commentitle">@fullCommentModel.Title</h3>
+                        <h4 class="commentauthor">@fullCommentModel.Author</h4>
+                        <h4 class="commentdate">@fullCommentModel.DatePublished</h4>
+                        <p class="commentcontent">@fullCommentModel.Text</p>
+                    </div>
+                }
+                <div class="commentobject">
+                    <h3 class="commentitle">Worst app ever!</h3>
+                    <h4 class="commentauthor">Mark Robinson</h4>
+                    <h4 class="commentdate">2020-11-09</h4>
+                    <p class="commentcontent">Ruined my Christmas.</p>
+                </div>
+                <div class="commentobject">
+                    <h3 class="commentitle">One redeeming feature</h3>
+                    <h4 class="commentauthor">Ebenezer Scrooge</h4>
+                    <h4 class="commentdate">2020-11-09</h4>
+                    <p class="commentcontent">Free to use. That's about it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="music">
+        <audio controls autoplay loop id="playAudio">
+            <source src="https://www.christmasgifts.com/christmasmusic/isawthreeships.mp3" type="audio/mpeg" />
+        </audio>
+    </div>
+</body>
+</html>

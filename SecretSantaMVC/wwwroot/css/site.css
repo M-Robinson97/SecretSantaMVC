@@ -1,0 +1,286 @@
+﻿/*
+    Clear some default properties
+*/
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font-family: Arial;
+}
+
+
+/*
+    Style the background video
+*/
+#snowflakesFalling {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* 
+    Add overlay
+*/
+#overlay {
+    position: relative;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    padding: 20px;
+}
+
+/*
+    Style music
+*/
+#music {
+    margin-left: 70%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+}
+
+/*
+    Reset properties for newly-added entry fields
+*/
+#newElementId {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/*
+    Format top-of-page header
+*/
+h1 {
+    display: block;
+    font-size: 3em;
+    text-align: center;
+    margin-top: 0.67em;
+    margin-bottom: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+
+/*
+    Format div containing all Secret Santa entry features
+*/
+.entryfield {
+    float: left;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+}
+
+/*
+    Format input fields for names
+*/
+input.formname {
+    width: 20%;
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 2px;
+    border-radius: 25px;
+    text-align: center;
+}
+/*
+    Format input fields for email addresses
+*/
+input.formemail {
+    width: 20%;
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 2px;
+    border-radius: 25px;
+    text-align: center;
+}
+/*
+    Format added input fields for names (used a different class 
+    for added inputs so that at least 3 inputs will remain if the
+    starts deleting)
+    
+*/
+input.formextraname {
+    width: 20%;
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 2px;
+    border-radius: 25px;
+    text-align: center;
+}
+/*
+    Format added input fields for emails
+*/
+input.formextraemail {
+    width: 20%;
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 2px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+/*
+    Format container for name and email inputs
+*/
+div.nameemail {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/*
+    Format container for adding new name and email inputs
+    (added this and the previous styling because the new 
+    boxes do not align properly on the right - still not sure
+    why this happens)
+*/
+div.newElementId {
+    width:  100%;
+    margin: 0 auto;
+}
+
+/*
+    Format instructions for secret santa and commenting
+*/
+h2 {
+    margin: 3%;
+    text-align:center;
+}
+
+/*
+    Position container containing the buttons to submit Secret Santa
+*/
+#secretsantaformbuttons {
+    margin-left: 33.3%
+}
+
+/*
+    Format the buttons used to interact with Secret Santa
+*/
+.secretsantaformbutton {
+    border: 4px solid;
+    border-color: white;
+    color: white;
+    background-color: darkred;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    margin: 2%;
+    border-radius: 25px;
+}
+
+/*
+    Position the comment form
+*/
+#commentform{
+    margin-left: 33.3%;
+
+}
+
+/*
+    Format the input fields of the comment form
+*/
+input.commentfield {
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 2px;
+    border-radius: 25px;
+    text-align: left;
+}
+/*
+    Format the text area of the comment form
+*/
+textarea.commentfield {
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    padding-bottom: 30px;
+    border: 2px;
+    border-radius: 25px;
+    text-align: left;
+}
+/*
+    Format the comment form submission button
+*/
+.commentsformbutton {
+    border: 4px solid;
+    border-color: white;
+    color: white;
+    background-color: darkred;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    margin: 2%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    border-radius: 25px;
+}
+
+/*
+    Format each individual comments
+*/
+.commentobject {
+    width: 60%;
+    margin-left: 20%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/*
+    Format comment title
+*/
+.commentitle{
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+/*
+    Format comment author
+*/
+.commentauthor {
+    font-size: 18px;
+    font-weight: lighter;
+    margin-bottom: 5px;
+}
+/*
+    Format comment date
+*/
+.commentdate {
+    font-size: 16px;
+    font-weight: lighter;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+/*
+    Format comment content
+*/
+.commentcontent {
+    font-size: 16px;
+}
+
