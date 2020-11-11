@@ -3,7 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+@*
+    * Scaffolding set up on setting up system to work with Entity. Have included
+    * this view (and the corresponding controller) in case I decide to introduce
+    * an admin page with CRUD operations
+*@
 <h1>Index</h1>
 
 <p>
@@ -28,26 +32,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatePublished)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePublished)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

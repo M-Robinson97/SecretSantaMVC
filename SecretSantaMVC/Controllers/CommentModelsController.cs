@@ -8,6 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using SecretSantaMVC.Data;
 using SecretSantaMVC.Models;
 
+/*
+ * Scaffolding set up on setting up system to work with Entity. Have included
+ * this controller (and the corresponding view) in case I decide to introduce
+ * an admin page with CRUD operations
+ */
+
 namespace SecretSantaMVC.Controllers
 {
     public class CommentModelsController : Controller

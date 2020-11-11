@@ -5,6 +5,10 @@
     Layout = null;
 }
 
+@*
+ * View for the Secret Santa app. Model is a list of CommentModel objects
+ * which is used to render comments, most recent first.
+ *@
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,52 +27,17 @@
         <h1 class="title">Welcome to the Secret Santa Generator!</h1>
         <div class="entryfield">
             <h2 class="inputinstruction">Add the email addresses of at least three friends below!</h2>
-            <form>
-                <br>
-                <div class="nameemail">
-                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" name="name" required>
-                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" name="email" required>
-                </div>
-                <div class="nameemail">
-                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" name="name" required>
-                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" name="email" required>
-                </div>
-                <div class="nameemail">
-                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" name="name" required>
-                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" name="email" required>
-                </div>
-                <div id="newElementId"></div>
-                <br>
-                <div id="secretsantaformbuttons">
-                    <input class="secretsantaformbutton" type="submit" name="submit" value="Submit">
-                    <input class="secretsantaformbutton" type="button" value="+" onclick="createNewInput();" />
-                    <input class="secretsantaformbutton" type="button" value="-" onclick="deleteInput();" />
-                    <script type="text/JavaScript">
-                        function createNewInput() {
-                            var txtNewInputBox = document.createElement('div');
-                            txtNewInputBox.innerHTML = "<type='text' class='formextraname' placeholder='Enter a name!' maxlength='30' name='name' required><input type='email' class='formextraemail' placeholder='Enter an email address!' maxlength='30' name='email' required>";
-                            document.getElementById("newElementId").appendChild(txtNewInputBox);
-                        }
-                    </script>
-                    <script>
-                        function deleteInput() {
-                            var elemName = document.getElementsByClassName('formextraname')[document.getElementsByClassName('formextraname').length - 1];
-                            var elemEmail = document.getElementsByClassName('formextraemail')[document.getElementsByClassName('formextraemail').length - 1];
-                            elemName.parentNode.removeChild(elemName);
-                            elemEmail.parentNode.removeChild(elemEmail);
-                        }
-                    </script>
-                </div>
-                <br>
-            </form>
+
+            @Html.Partial("_SecretSantaForm", new SecretSantaMVC.Models.NameEmailModel())
+
         </div>
         <div class="commentformdiv">
             <h2 class="commentinstruction">Like what you see? Leave some feedback in the comments below!</h2>
-            
+
             @Html.Partial("_CommentForm", new SecretSantaMVC.Models.CommentModel())
 
             <div id="renderReviewsId">
-                @foreach (var commentModel in Model)
+                @foreach (var commentModel in Model.Reverse())
                 {
                 <div class="commentobject">
                     <h3 class="commentitle">@commentModel.Title</h3>
@@ -77,18 +46,6 @@
                     <p class="commentcontent">@commentModel.Text</p>
                 </div>
                 }
-                <div class="commentobject">
-                    <h3 class="commentitle">Worst app ever!</h3>
-                    <h4 class="commentauthor">Mark Robinson</h4>
-                    <h4 class="commentdate">2020-11-09</h4>
-                    <p class="commentcontent">Ruined my Christmas.</p>
-                </div>
-                <div class="commentobject">
-                    <h3 class="commentitle">One redeeming feature</h3>
-                    <h4 class="commentauthor">Ebenezer Scrooge</h4>
-                    <h4 class="commentdate">2020-11-09</h4>
-                    <p class="commentcontent">Free to use. That's about it.</p>
-                </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,8 @@
 ﻿@model SecretSantaMVC.Models.CommentModel
-
+@*
+ * Partial view for the comments form. Fields are posted
+ * to the controller and bound to a CommentModel object
+ *@
 <form asp-action="Create" id="commentform" method="post">
     <div class="commentfielddiv">
         <input asp-for="Title" class="commentfield" type="text" placeholder="Give your review a title!" maxlength="30" required name="title">

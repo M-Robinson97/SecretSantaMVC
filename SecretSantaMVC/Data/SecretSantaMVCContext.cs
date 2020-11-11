@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SecretSantaMVC.Models;
-
+/*
+ * Used for database connectivity & dependency injection.
+ */
 namespace SecretSantaMVC.Data
 {
     // DBContext represents a session with the database
@@ -13,8 +15,8 @@ namespace SecretSantaMVC.Data
         public SecretSantaMVCContext (DbContextOptions<SecretSantaMVCContext> options) : base(options)
         {
         }
-        // Create a DBSet<Movie> property for the entity set.
-        // An entity set corresponds to a database table. An entity is a row.
+        // Create a DBSet<Movie> property for the entity set. The set corresponds to a table,
+        // with each entity corresponding to a row.
         public DbSet<CommentModel> CommentModel { get; set; }
     }
 }
