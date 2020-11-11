@@ -92,6 +92,7 @@ namespace SecretSantaMVC.Models
             }
         }
 
+
         /*
         * Method for retrieving the contents of a table
         */
@@ -104,6 +105,8 @@ namespace SecretSantaMVC.Models
             string password = "weders104";
 
             string tableName = "Comments";
+
+
 
             // Connection info
             string connectionData = $"Data Source={dataSource};Initial Catalog={initialCatalog};User ID={userID};Password={password}";

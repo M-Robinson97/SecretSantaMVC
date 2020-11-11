@@ -3,15 +3,34 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SecretSantaMVC.Models;
+using System.Web;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using SecretSantaMVC.Data;
+
 
 namespace SecretSantaMVC.Controllers
 
 {
     public class HomeController : Controller
     {
+        private readonly SecretSantaMVCContext _context;
+
+        public HomeController(SecretSantaMVCContext context)
+        {
+            // Uses dependency injection to inject database context into controller
+            _context = context;
+        }
+
+        // GET: CommentModels
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.CommentModel.ToListAsync());
+        }
         /*
          * Index action for displaying view of home page.
          * AccessDB.GetComments() method is called, which returns a list
@@ -22,14 +41,18 @@ namespace SecretSantaMVC.Controllers
          * in the view, no comments render. 
          */
         // GET: /Home/
+       /*
         public ActionResult Index()
         {
 
+            
             // GetComments returns a list of string lists. These now
             // need to be converted into a list of FullCommentModel objects.
             List<List<string>> allComments = AccessDB.GetComments();
             
-            var model = new List<FullCommentModel>();
+            var allCommentsModel = new List<FullCommentModel>();
+
+
 
             foreach (List<string> singleComment in allComments)
             {
@@ -47,19 +70,26 @@ namespace SecretSantaMVC.Controllers
                     Text = text
                 };
 
-                model.Add(fullCommentModel);
+                allCommentsModel.Add(fullCommentModel);
 
             }
+            // Use a ViewBag to post comments to View
+            ViewBag.AllCommentsModel = allCommentsModel;
             
-            return View(model);
+
+
+            return View();
 
         }
+       */
 
         // Action for posting a comment (to be called whenever comments form is submitted)
+        // This now works.
         
         [HttpPost]
-        public ActionResult PostComment(CommentModel model)
+        public ActionResult PostComment(ContainerModel containerModel)
         {
+            var model = containerModel.CommentModel;
             string title = model.Title;
             string author = model.Author;
             string text = model.Text;
@@ -82,14 +112,19 @@ namespace SecretSantaMVC.Controllers
          * emails. 
          */
         [HttpPost]
-        public ActionResult SendEmail(CommentModel model)
+        public ActionResult SendEmail(ContainerModel containerModel)
+        //public ActionResult SendEmail(IFormCollection namesAndEmails)
         {
-            string name = model.Title;
-            string email = model.Author;
-            
+            var Text = containerModel.NameEmailModel.Name;
+            var Email = containerModel.NameEmailModel.Email;
 
-            Console.WriteLine("name: " + name);
-            Console.WriteLine("email: " + email);
+            for (int i = 0; i < Text.Length; i++)
+            {
+                Console.WriteLine("Text = " + Text[i]);
+                Console.WriteLine("Email = " + Email[i]);
+            }
+            
+           
 
             return RedirectToAction("Index");
         }

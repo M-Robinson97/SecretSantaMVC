@@ -1,4 +1,4 @@
-﻿@model List<FullCommentModel>
+﻿@model IEnumerable<SecretSantaMVC.Models.CommentModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -26,16 +26,16 @@
             <form>
                 <br>
                 <div class="nameemail">
-                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" required>
-                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" required>
+                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" name="name" required>
+                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" name="email" required>
                 </div>
                 <div class="nameemail">
-                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" required>
-                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" required>
+                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" name="name" required>
+                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" name="email" required>
                 </div>
                 <div class="nameemail">
-                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" required>
-                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" required>
+                    <input class="formname" type="text" placeholder="Enter a name!" maxlength="30" name="name" required>
+                    <input class="formemail" type="email" placeholder="Enter an email address!" maxlength="30" name="email" required>
                 </div>
                 <div id="newElementId"></div>
                 <br>
@@ -46,7 +46,7 @@
                     <script type="text/JavaScript">
                         function createNewInput() {
                             var txtNewInputBox = document.createElement('div');
-                            txtNewInputBox.innerHTML = "<input type='text' class='formextraname' placeholder='Enter a name!' maxlength='30' required><input type='email' class='formextraemail' placeholder='Enter an email address!' maxlength='30' required>";
+                            txtNewInputBox.innerHTML = "<type='text' class='formextraname' placeholder='Enter a name!' maxlength='30' name='name' required><input type='email' class='formextraemail' placeholder='Enter an email address!' maxlength='30' name='email' required>";
                             document.getElementById("newElementId").appendChild(txtNewInputBox);
                         }
                     </script>
@@ -79,14 +79,14 @@
                 </div>
             </form>
             <div id="renderReviewsId">
-                @foreach (var fullCommentModel in Model)
+                @foreach (var commentModel in Model)
                 {
-                    <div class="commentobject">
-                        <h3 class="commentitle">@fullCommentModel.Title</h3>
-                        <h4 class="commentauthor">@fullCommentModel.Author</h4>
-                        <h4 class="commentdate">@fullCommentModel.DatePublished</h4>
-                        <p class="commentcontent">@fullCommentModel.Text</p>
-                    </div>
+                <div class="commentobject">
+                    <h3 class="commentitle">@commentModel.Title</h3>
+                    <h4 class="commentauthor">@commentModel.Author</h4>
+                    <h4 class="commentdate">@commentModel.DatePublished.ToString("yyyy-MM-dd")</h4>
+                    <p class="commentcontent">@commentModel.Text</p>
+                </div>
                 }
                 <div class="commentobject">
                     <h3 class="commentitle">Worst app ever!</h3>

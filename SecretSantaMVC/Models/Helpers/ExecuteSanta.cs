@@ -82,7 +82,7 @@ namespace ExecuteSanta
         {
             foreach (NameEmailModel[] pair in giveReceivePairs)
             {
-                SendEmail.SendNow(pair);
+                //SendEmail.SendNow(pair);
             }
         }
     }
@@ -115,7 +115,7 @@ namespace ExecuteSanta
      */
     public static class SendEmail
     {
-
+        /*
         public static void SendNow(NameEmailModel[] giveReceivePair)
         {
             string giverName = giveReceivePair[0].Name;
@@ -154,6 +154,7 @@ namespace ExecuteSanta
             }
 
         }
+        */
 
     }
 }
