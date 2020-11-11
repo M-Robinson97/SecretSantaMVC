@@ -1,0 +1,16 @@
+﻿@model SecretSantaMVC.Models.CommentModel
+
+<form asp-action="Create" id="commentform" method="post">
+    <div class="commentfielddiv">
+        <input asp-for="Title" class="commentfield" type="text" placeholder="Give your review a title!" maxlength="30" required name="title">
+    </div>
+    <div class="commentfielddiv">
+        <input asp-for="Author" class="commentfield" type="text" placeholder="What's your name?" maxlength="30" required name="author">
+    </div>
+    <div class="commentfielddiv">
+        <textarea asp-for="Text" class="commentfield" type="text" placeholder="Write your review here!" required name="text"></textarea>
+    </div>
+    <div>
+        <input class="commentsformbutton" type="submit" name="submit-review" value="Click to submit your review!">
+    </div>
+</form>

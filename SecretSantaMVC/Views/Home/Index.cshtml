@@ -64,20 +64,9 @@
         </div>
         <div class="commentformdiv">
             <h2 class="commentinstruction">Like what you see? Leave some feedback in the comments below!</h2>
-            <form id="commentform">
-                <div class="commentfielddiv">
-                    <input class="commentfield" type="text" placeholder="Give your review a title!" maxlength="30" required name="title">
-                </div>
-                <div class="commentfielddiv">
-                    <input class="commentfield" type="text" placeholder="What's your name?" maxlength="30" required name="author">
-                </div>
-                <div class="commentfielddiv">
-                    <textarea class="commentfield" type="text" placeholder="Write your review here!" required name="text"></textarea>
-                </div>
-                <div>
-                    <input class="commentsformbutton" type="submit" name="submit-review" value="Click to submit your review!">
-                </div>
-            </form>
+            
+            @Html.Partial("_CommentForm", new SecretSantaMVC.Models.CommentModel())
+
             <div id="renderReviewsId">
                 @foreach (var commentModel in Model)
                 {
@@ -111,3 +100,8 @@
     </div>
 </body>
 </html>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

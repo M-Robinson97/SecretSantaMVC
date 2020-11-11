@@ -31,6 +31,25 @@ namespace SecretSantaMVC.Controllers
         {
             return View(await _context.CommentModel.ToListAsync());
         }
+
+        // POST: CommentModels/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,DatePublished,Title,Author,Text")] CommentModel commentModel)
+        {
+            DateTime today = DateTime.Now;
+            commentModel.DatePublished = today;
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(commentModel);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("Index");
+        }
         /*
          * Index action for displaying view of home page.
          * AccessDB.GetComments() method is called, which returns a list
@@ -41,51 +60,51 @@ namespace SecretSantaMVC.Controllers
          * in the view, no comments render. 
          */
         // GET: /Home/
-       /*
-        public ActionResult Index()
-        {
-
-            
-            // GetComments returns a list of string lists. These now
-            // need to be converted into a list of FullCommentModel objects.
-            List<List<string>> allComments = AccessDB.GetComments();
-            
-            var allCommentsModel = new List<FullCommentModel>();
+        /*
+         public ActionResult Index()
+         {
 
 
+             // GetComments returns a list of string lists. These now
+             // need to be converted into a list of FullCommentModel objects.
+             List<List<string>> allComments = AccessDB.GetComments();
 
-            foreach (List<string> singleComment in allComments)
-            {
-                // singleComment[0] is ID, which we won't use
-                string title = singleComment[1];
-                string datePublished = singleComment[2];
-                string author = singleComment[3];
-                string text = singleComment[4];
-
-                var fullCommentModel = new FullCommentModel
-                {
-                    Title = title,
-                    DatePublished = datePublished,
-                    Author = author,
-                    Text = text
-                };
-
-                allCommentsModel.Add(fullCommentModel);
-
-            }
-            // Use a ViewBag to post comments to View
-            ViewBag.AllCommentsModel = allCommentsModel;
-            
+             var allCommentsModel = new List<FullCommentModel>();
 
 
-            return View();
 
-        }
-       */
+             foreach (List<string> singleComment in allComments)
+             {
+                 // singleComment[0] is ID, which we won't use
+                 string title = singleComment[1];
+                 string datePublished = singleComment[2];
+                 string author = singleComment[3];
+                 string text = singleComment[4];
+
+                 var fullCommentModel = new FullCommentModel
+                 {
+                     Title = title,
+                     DatePublished = datePublished,
+                     Author = author,
+                     Text = text
+                 };
+
+                 allCommentsModel.Add(fullCommentModel);
+
+             }
+             // Use a ViewBag to post comments to View
+             ViewBag.AllCommentsModel = allCommentsModel;
+
+
+
+             return View();
+
+         }
+        
 
         // Action for posting a comment (to be called whenever comments form is submitted)
         // This now works.
-        
+
         [HttpPost]
         public ActionResult PostComment(ContainerModel containerModel)
         {
@@ -103,7 +122,7 @@ namespace SecretSantaMVC.Controllers
             return RedirectToAction("Index");
         }
        
-
+        */
         /*
          * Need a way to post each name/email pair here from the 
          * view so that I can convert them into a list of 
